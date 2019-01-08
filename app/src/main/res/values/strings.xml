@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Transity</string>
+    <string name="title_activity_maps">Transity</string>
+
+    <!--ActionBar Menu items names-->
+    <string name="ab_item_add_to_favourites">Dodaj do ulubionych</string>
+    <string name="ab_item_remove_from_favourites">Usuń z ulubionych</string>
+
+    <!--Settings Activity Name-->
+    <string name="title_activity_settings">Ustawienia</string>
+
+    <!--Map Control Menu-->
+    <string name="show_all">Wszystkie</string>
+    <string name="show_favs">Ulubione</string>
+    <string name="show_stops">Przystanki</string>
+    <string name="show_buses">Autobusy</string>
+    <string name="show_trams">Tramwaje</string>
+
+
+    <!--Right Side Drawer-->
+    <string name="right_drawer_icon">IKONA</string>
+    <string name="right_drawer_header">Ogród Działkowy Im.Warneńczyka 01</string>
+
+    <!--Vehicle Info Windows fake data-->
+    <string name="iw_line">512</string>
+    <string name="iw_brigade">3</string>
+    <string name="iw_lat">52.2907753 N</string>
+    <string name="iw_lon">21.0697613 E</string>
+    <string name="iw_bearing">136.4°</string>
+    <string name="iw_odometer">77.7 m</string>
+    <string name="iw_speed">21.5 km/h</string>
+    <string name="iw_time">21:59:50</string>
+    <string name="iw_timestamp">22:00:03</string>
+    <string name="iw_time_diff">12s</string>
+    <string name="iw_timestamp_diff">7s</string>
+    <string name="iw_route">TP-WTB</string>
+
+
+    <!--Favorites Activity Name-->
+    <string name="title_activity_favorites">Ulubione</string>
+
+    <string name="tab_favorite_stops">Przystanki</string>
+    <string name="tab_favorite_lines">Linie</string>
+
+
+</resources>

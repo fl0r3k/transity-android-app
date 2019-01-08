@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+
+        <variable
+            name="viewModel"
+            type="pl.transity.app.viewmodels.MainActivityViewModel" />
+
+        <variable
+            name="mainactivity"
+            type="pl.transity.app.activities.MainActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fitsSystemWindows="false">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:visibility="@{viewModel.isActionBarVisible ? View.VISIBLE : View.GONE}">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="@{viewModel.actionBarTitle}" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:uiCompass="false"
+                app:uiMapToolbar="false"
+                app:uiRotateGestures="false"
+                app:uiTiltGestures="false"
+                app:uiZoomControls="false" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/settingsButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="128dp"
+                android:onClick="@{(view) -> mainactivity.startSettingsActivity(view)}"
+                android:src="@drawable/ic_settings_gray_24dp"
+                android:theme="@style/AppTheme.FabButton"
+                app:elevation="2dp"
+                app:fabSize="mini"
+                app:rippleColor="@color/colorGrey" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="72dp"
+                android:onClick="@{(view) -> mainactivity.centerMapOnCity(view)}"
+                android:src="@drawable/ic_zoom_out_map_gray_24dp"
+                android:theme="@style/AppTheme.FabButton"
+                app:elevation="2dp"
+                app:fabSize="mini"
+                app:rippleColor="@color/colorGrey" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:onClick="@{(view) -> mainactivity.myLocationButtonPressed(view)}"
+                android:src="@{viewModel.isLocationEnabled ? @drawable/ic_my_location_gray_24dp : @drawable/ic_location_searching_gray_24dp}"
+                android:theme="@style/AppTheme.FabButton"
+                app:elevation="2dp"
+                app:fabSize="mini"
+                app:rippleColor="@color/colorGrey" />
+
+
+            <LinearLayout
+                android:id="@+id/bottomSheet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:behavior_state="@{viewModel.bottomSheetBehaviorState}"
+                app:layout_behavior="@string/bottom_sheet_behavior">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bottomSheetLinesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:elevation="4dp"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.VISIBLE : View.GONE}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bottomSheetNextArrivalsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="@{viewModel.bottomSheetLinesListVisible}"
+                    android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.VISIBLE : View.GONE}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bottomSheetNextStopsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="@{!viewModel.bottomSheetLinesListVisible}"
+                    android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.GONE : View.VISIBLE}" />
+
+
+            </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:adSize="SMART_BANNER"
+            app:adUnitId="@string/admob_banner_id" />
+    </LinearLayout>
+</layout>

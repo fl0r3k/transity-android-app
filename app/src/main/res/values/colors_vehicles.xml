@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- BUS COLORS -->
+    <color name="busPrimaryLight">#bb44ac</color>
+    <color name="busPrimary">#88007C</color>
+    <color name="busPrimaryDark">#57004F</color>
+
+    <!-- TRAM COLORS -->
+    <color name="tramPrimaryLight">#FF564E</color>
+    <color name="tramPrimary">#E90024</color>
+    <color name="tramPrimaryDark">#AE0000</color>
+
+</resources>

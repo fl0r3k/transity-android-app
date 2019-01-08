@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.MainActivity">
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_star_border_white_24dp"
+        android:orderInCategory="10"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/ab_item_add_to_favourites" />
+
+    <item
+        android:id="@+id/unfavorite"
+        android:icon="@drawable/ic_star_white_24dp"
+        android:orderInCategory="10"
+        app:showAsAction="ifRoom|withText"
+        android:title="@string/ab_item_remove_from_favourites" />
+
+</menu>

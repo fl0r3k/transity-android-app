@@ -1,0 +1,66 @@
+<resources>
+
+<!--General Category-->
+    <string name="pref_general_category_key" translatable="false">general_category</string>
+    <string name="pref_general_category_label">Ogólne</string>
+
+    <string name="pref_favorites_key" translatable="false">favorites</string>
+    <string name="pref_favorites_target_class" translatable="false">com.scsexpert.androidApp.FavoritesManagerActivity</string>
+    <string name="pref_favorites_target_package" translatable="false">com.scsexpert.androidApp</string>
+    <string name="pref_favorites_label">Ulubione</string>
+
+    <string name="pref_cities_key" translatable="false">cities</string>
+    <string name="pref_cities_label">Miasto</string>
+    <string name="pref_cities_summary">Wybierz miasto</string>
+    <string name="pref_cities_default_value">Warszawa</string>
+
+
+    <!--Vehicles Category-->
+    <string name="pref_vehicles_category_key" translatable="false">vehicles_category</string>
+    <string name="pref_vehicles_category_label">Pojazdy</string>
+
+    <string name="pref_show_vehicles_key" translatable="false">show_vehicles</string>
+    <string name="pref_show_vehicles_label">Pokaż pojazdy</string>
+    <string name="pref_show_vehicles_on">widoczne</string>
+    <string name="pref_show_vehicles_off">ukryte</string>
+
+    <string name="pref_show_only_favorite_vehicles_key" translatable="false">show_only_favorite_vehicles</string>
+    <string name="pref_show_only_favorite_vehicles_label">Pokaż tylko ulubione pojazdy</string>
+    <string name="pref_show_only_favorite_vehicles_on">Tylko ulubione</string>
+    <string name="pref_show_only_favorite_vehicles_off">Wszystkie pojazdy</string>
+
+    <string name="pref_show_buses_key" translatable="false">show_buses</string>
+    <string name="pref_show_buses_label">Pokaż autobusy</string>
+    <string name="pref_show_buses_on">Autobusy włączone</string>
+    <string name="pref_show_buses_off">Autobusy wyłączone</string>
+
+    <string name="pref_show_trams_key" translatable="false">show_trams</string>
+    <string name="pref_show_trams_label">Pokaż tramwaje</string>
+    <string name="pref_show_trams_on">Tramwaje włączone</string>
+    <string name="pref_show_trams_off">Tramwaje wyłączone</string>
+
+    <!--Stops Category-->
+    <string name="pref_stops_category_key" translatable="false">stops_category</string>
+    <string name="pref_stops_category_label">Przystanki</string>
+
+    <string name="pref_show_stops_key" translatable="false">show_stops</string>
+    <string name="pref_show_stops_label">Pokaż przystanki</string>
+    <string name="pref_show_stops_on">widoczne</string>
+    <string name="pref_show_stops_off">ukryte</string>
+
+    <string name="pref_show_only_favorite_stops_key" translatable="false">show_only_favorite_stops</string>
+    <string name="pref_show_only_favorite_stops_label">Pokaż tylko ulubione przystanki</string>
+    <string name="pref_show_only_favorite_stops_on">Tylko ulubione</string>
+    <string name="pref_show_only_favorite_stops_off">Wszystkie przystanki</string>
+
+    <string name="pref_show_bus_stops_key" translatable="false">show_bus_stops</string>
+    <string name="pref_show_bus_stops_label">Przystanki autobusowe</string>
+    <string name="pref_show_bus_stops_on">widoczne</string>
+    <string name="pref_show_bus_stops_off">ukryte</string>
+
+    <string name="pref_show_tram_stops_key" translatable="false">show_tram_stops</string>
+    <string name="pref_show_tram_stops_label">Przystanki tramwajowe</string>
+    <string name="pref_show_tram_stops_on">widoczne</string>
+    <string name="pref_show_tram_stops_off">ukryte</string>
+
+</resources>

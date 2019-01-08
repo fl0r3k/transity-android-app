@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="arrival"
+            type="pl.transity.app.data.model.Arrival" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/arrival_parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/arrival_line_number"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_line_icon_on_stop"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="@{arrival.line}"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:backgroundColor="@{arrival.bgColor}"
+            app:layout_constraintStart_toEndOf="@+id/arrival_vehicle_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textColor="@{arrival.fgColor}"
+            tools:text="@string/arrival_line" />
+
+        <ImageView
+            android:id="@+id/arrival_vehicle_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/arrival_vehicle_icon_content_descriptor"
+            app:layout_constraintBottom_toBottomOf="@+id/arrival_line_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/arrival_line_number"
+            app:vehicleIcon="@{arrival.type}"
+            tools:srcCompat="@drawable/ic_bus_gray_24dp" />
+
+        <TextView
+            android:id="@+id/arrival_destination"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="@{arrival.destination}"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/arrival_line_number"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+            app:layout_constraintStart_toEndOf="@+id/arrival_line_number"
+            app:layout_constraintTop_toTopOf="@+id/arrival_line_number"
+            tools:text="@string/arrival_destination" />
+
+        <TextView
+            android:id="@+id/arrival_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@{arrival.time}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/arrival_status"
+            app:layout_constraintStart_toEndOf="@+id/arrival_status"
+            app:layout_constraintTop_toTopOf="@+id/arrival_status"
+            tools:text="@string/arrival_time" />
+
+        <TextView
+            android:id="@+id/arrival_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/arrival_status"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/arrival_parent_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/arrival_line_number"
+            tools:text="@string/arrival_status" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/arrival_eta_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{arrival.eta}"
+                android:textSize="24sp"
+                tools:text="@string/arrival_eta_value" />
+
+            <TextView
+                android:id="@+id/arrival_eta_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/arrival_eta_unit"
+                android:textSize="12sp"
+                tools:text="@string/arrival_eta_unit" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

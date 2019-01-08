@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="pref_show_vehicles_default">true</bool>
+    <bool name="pref_show_only_favorite_vehicles_default">false</bool>
+    <bool name="pref_show_buses_default">true</bool>
+    <bool name="pref_show_trams_default">true</bool>
+
+    <bool name="pref_show_stops_default">true</bool>
+    <bool name="pref_show_only_favorite_stops_default">false</bool>
+    <bool name="pref_show_bus_stops_default">true</bool>
+    <bool name="pref_show_tram_stops_default">true</bool>
+</resources>

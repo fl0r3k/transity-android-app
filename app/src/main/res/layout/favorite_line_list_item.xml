@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="line"
+            type="pl.transity.app.data.model.FavoriteLine" />
+
+    </data>
+
+    <TextView
+        android:id="@+id/line_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="@{line.line}"
+        tools:text="@string/arrival_line"
+        tools:layout_width="64dp"/>
+
+</layout>

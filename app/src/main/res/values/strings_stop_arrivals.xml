@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Stop Info Vehicles fake data-->
+    <string name="arrival_line">112</string>
+    <string name="arrival_source">Karolin</string>
+    <string name="arrival_destination">CH Marki</string>
+    <string name="arrival_time">18:30</string>
+    <string name="arrival_eta_value">5</string>
+    <string name="arrival_eta_unit">min</string>
+    <string name="arrival_status">Według rozkładu - </string>
+    <string name="arrival_vehicle_icon_content_descriptor">vehicle_icon</string>
+    <string name="arrival_details_icon_content_descriptor">details_icon</string>
+</resources>

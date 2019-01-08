@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#397afc</color>
+    <color name="colorPrimaryDark">#3c45c9</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--Other main colors-->
+    <color name="launcherIconBackground">#1A73E9</color>
+
+    <!--Colors for speed indicator on path traveled-->
+    <color name="speedGreen">#84CA50</color>
+    <color name="speedOrange">#F07D02</color>
+    <color name="speedRed">#E60000</color>
+    <color name="speedDarkRed">#9F1313</color>
+
+    <!--Colors for speed routes-->
+    <color name="routePrimaryFill">#00B3FB</color>
+    <color name="routePrimaryBorder">#3379C3</color>
+
+
+    <color name="routeSecondaryFill">#CCCCCC</color>
+    <color name="routeSecondaryBorder">#A0A0A0</color>
+
+    <!--Color for spinning progress bar-->
+    <color name="colorGrey">#AAAAAA</color>
+    <color name="colorLightGrey">#DDDDDD</color>
+
+    <!--Just white-->
+    <color name="white">#FFFFFF</color>
+
+    <!--Transparencies-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent10">#1A000000</color>
+    <color name="transparent15">#26000000</color>
+    <color name="transparent20">#33000000</color>
+    <color name="transparent25">#40000000</color>
+    <color name="transparent50">#80000000</color>
+    <color name="transparent75">#BF000000</color>
+    <color name="transparent80">#CC000000</color>
+    <color name="transparent90">#E6000000</color>
+    <color name="transparent100">#FF000000</color>
+    <color name="foreground_material_light">#d91919</color>
+    <color name="background_material_light">#fafafa</color>
+</resources>

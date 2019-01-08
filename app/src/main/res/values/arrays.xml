@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="available_cities">
+        <item name="warsaw">Warszawa</item>
+    </string-array>
+</resources>

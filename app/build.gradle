@@ -1,0 +1,90 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'transity'
+            storeFile file('D:/Google Drive/AndroidDeveloper/transity.pl/keystore.jks')
+            v2SigningEnabled true
+        }
+    }
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "pl.transity.app"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 6
+        versionName "0.2"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            applicationIdSuffix ".debug"
+        }
+    }
+    androidExtensions {
+        experimental = true
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def room_version = "2.1.0-alpha03"
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    androidTestImplementation 'androidx.test:core:1.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    //    testImplementation 'junit:junit:4.12'
+    //    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    //GoogleAds
+    implementation 'com.google.android.gms:play-services-ads:17.1.2'
+    //Preference Fragment
+    implementation 'androidx.preference:preference:1.0.0'
+    //Google Maps and Location
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //Constraint Layout
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    //DrawerLayout
+    implementation 'androidx.drawerlayout:drawerlayout:1.0.0'
+    //Recycler View
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    //ViewModel and LiveData
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.0.0"
+    //Kotlin reflect
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    annotationProcessor "com.android.databinding:compiler:3.1.4"
+
+    //SortedListAdapter
+    implementation 'com.github.wrdlbrnft:sorted-list-adapter:0.3.0.27'
+
+}

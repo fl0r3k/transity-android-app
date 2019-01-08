@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="@string/pref_general_category_key"
+        app:title="@string/pref_general_category_label">
+        <Preference
+            app:key="@string/pref_favorites_key"
+            app:title="@string/pref_favorites_label">
+            <intent android:action=".FavoritesManagerActivity" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="@string/pref_vehicles_category_key"
+        app:title="@string/pref_vehicles_category_label">
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_vehicles_default"
+            app:key="@string/pref_show_vehicles_key"
+            app:summaryOff="@string/pref_show_vehicles_off"
+            app:summaryOn="@string/pref_show_vehicles_on"
+            app:title="@string/pref_show_vehicles_label" />
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_only_favorite_vehicles_default"
+            app:dependency="@string/pref_show_vehicles_key"
+            app:key="@string/pref_show_only_favorite_vehicles_key"
+            app:summaryOff="@string/pref_show_only_favorite_vehicles_off"
+            app:summaryOn="@string/pref_show_only_favorite_vehicles_on"
+            app:title="@string/pref_show_only_favorite_vehicles_label" />
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_buses_default"
+            app:dependency="@string/pref_show_vehicles_key"
+            app:key="@string/pref_show_buses_key"
+            app:summaryOff="@string/pref_show_buses_off"
+            app:summaryOn="@string/pref_show_buses_on"
+            app:title="@string/pref_show_buses_label" />
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_trams_default"
+            app:dependency="@string/pref_show_vehicles_key"
+            app:key="@string/pref_show_trams_key"
+            app:summaryOff="@string/pref_show_trams_off"
+            app:summaryOn="@string/pref_show_trams_on"
+            app:title="@string/pref_show_trams_label" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="@string/pref_stops_category_key"
+        app:title="@string/pref_stops_category_label">
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_stops_default"
+            app:key="@string/pref_show_stops_key"
+            app:summaryOff="@string/pref_show_stops_off"
+            app:summaryOn="@string/pref_show_stops_on"
+            app:title="@string/pref_show_stops_label" />
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_only_favorite_stops_default"
+            app:dependency="@string/pref_show_stops_key"
+            app:key="@string/pref_show_only_favorite_stops_key"
+            app:summaryOff="@string/pref_show_only_favorite_stops_off"
+            app:summaryOn="@string/pref_show_only_favorite_stops_on"
+            app:title="@string/pref_show_only_favorite_stops_label" />
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_bus_stops_default"
+            app:dependency="@string/pref_show_stops_key"
+            app:key="@string/pref_show_bus_stops_key"
+            app:summaryOff="@string/pref_show_bus_stops_off"
+            app:summaryOn="@string/pref_show_bus_stops_on"
+            app:title="@string/pref_show_bus_stops_label" />
+        <SwitchPreference
+            app:defaultValue="@bool/pref_show_tram_stops_default"
+            app:dependency="@string/pref_show_stops_key"
+            app:key="@string/pref_show_tram_stops_key"
+            app:summaryOff="@string/pref_show_tram_stops_off"
+            app:summaryOn="@string/pref_show_tram_stops_on"
+            app:title="@string/pref_show_tram_stops_label" />
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

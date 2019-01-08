@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Stop Info Vehicles design data-->
+    <string name="stop_name">Czumy 02</string>
+    <string name="stop_street">Ulica: Powstańców Śląskich</string>
+    <string name="stop_direction">Kierunek: Wolności</string>
+    <string name="stop_time_timetable">18:30</string>
+    <string name="stop_time_eta_value">5</string>
+    <string name="stop_time_eta_unit">min</string>
+    <string name="stop_status">Czas z rozkładu:</string>
+    <string name="stop_sequence">13</string>
+    <string name="stop_details_icon_content_descriptor">details_icon</string>
+    <string name="stop_distance_design">Odległość: 800m</string>
+
+    <!--Stop Info Vehicles data strings-->
+    <string name="stop_distance">Odległość: %1$.0f m</string>
+    <string name="stop_arrival_timetable">%1$tH:%1$tM"</string>
+    <string name="stop_arrival_eta">%1$d"</string>
+</resources>
