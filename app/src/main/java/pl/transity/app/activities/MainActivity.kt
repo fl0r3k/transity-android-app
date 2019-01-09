@@ -484,6 +484,7 @@ class MainActivity : AppCompatActivity(),
     fun startSettingsActivity(v: View) {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
+        viewModel.clearSelection()
     }
 
     @SuppressLint("MissingPermission")
