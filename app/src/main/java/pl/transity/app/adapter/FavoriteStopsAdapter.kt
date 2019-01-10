@@ -1,38 +1,39 @@
 package pl.transity.app.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import pl.transity.app.R
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
 import pl.transity.app.data.model.Stop
+import pl.transity.app.databinding.FavoriteStopListItemBinding
 
-class FavoriteStopsAdapter(private val favoriteStops: List<Stop>) : RecyclerView.Adapter<FavoriteStopsAdapter.FavoriteStopViewHolder>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FavoriteStopViewHolder {
-        val context = viewGroup.context
-        val layoutIdForListItem = R.layout.favorite_stop_list_item
-        val inflater = LayoutInflater.from(context)
-        val shouldAttachToParentImmediately = false
-        val view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately)
-        return FavoriteStopViewHolder(view)
+class FavoriteStopsAdapter(
+        context: Context,
+        comparator: Comparator<Stop>,
+        private val removeFavoriteStopClickListener : FavoriteStopsAdapter.RemoveFavoriteStopClickListener
+) : SortedListAdapter<Stop>(context, Stop::class.java, comparator) {
+
+    interface RemoveFavoriteStopClickListener {
+        fun onRemoveFavoriteStopClick(id: String)
     }
 
-    override fun onBindViewHolder(holder: FavoriteStopViewHolder, position: Int) {
-        val stopLine = favoriteStops[position]
-        holder.bind(stopLine)
+    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewHolder<out Stop> {
+        val binding = FavoriteStopListItemBinding.inflate(inflater, parent, false)
+        return FavoriteStopViewHolder(binding,removeFavoriteStopClickListener)
     }
 
-    override fun getItemCount() = favoriteStops.size
+    inner class FavoriteStopViewHolder(
+            private val binding: FavoriteStopListItemBinding,
+            removeFavoriteStopClickListener : FavoriteStopsAdapter.RemoveFavoriteStopClickListener
+    ) : SortedListAdapter.ViewHolder<Stop>(binding.root) {
 
+        init {
+            binding.listener = removeFavoriteStopClickListener
+        }
 
-    inner class FavoriteStopViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        private val stopName: TextView = itemView.findViewById(R.id.stop_name)
-
-        fun bind(favoriteStop: Stop) {
-            stopName.text = favoriteStop.name
+        override fun performBind(stop: Stop) {
+            binding.stop = stop
         }
     }
 }

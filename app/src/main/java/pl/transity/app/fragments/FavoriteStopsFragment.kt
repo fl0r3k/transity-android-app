@@ -14,10 +14,13 @@ import pl.transity.app.adapter.FavoriteStopsAdapter
 import pl.transity.app.utilities.Injection
 import pl.transity.app.viewmodels.FavoritesActivityViewModel
 import kotlinx.android.synthetic.main.fragment_favorite_stops.*
+import pl.transity.app.data.model.Stop
 
-class FavoriteStopsFragment : Fragment() {
+class FavoriteStopsFragment : Fragment(), FavoriteStopsAdapter.RemoveFavoriteStopClickListener {
 
     private lateinit var viewModel: FavoritesActivityViewModel
+
+    private val stopsComparator = Comparator<Stop> { a, b -> a.name.compareTo(b.name) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +41,23 @@ class FavoriteStopsFragment : Fragment() {
     }
 
     private fun setupList() {
-        val favoriteStopsLayoutManager = LinearLayoutManager(context)
+
+        val removeFavoriteStopClickListener = this as FavoriteStopsAdapter.RemoveFavoriteStopClickListener
         favoriteStopsList.apply {
-            this.layoutManager = favoriteStopsLayoutManager
-            adapter = FavoriteStopsAdapter(emptyList())
+            this.layoutManager = LinearLayoutManager(context)
+            adapter = FavoriteStopsAdapter(context, stopsComparator, removeFavoriteStopClickListener)
             setHasFixedSize(true)
         }
 
         viewModel.favoriteStops.observe(this, Observer { favoriteStops ->
             Log.d("FavoriteStopsFragment","favoriteStops.observer")
             Log.d("FavoriteStopsFragment","$favoriteStops")
-            val newAdapter = FavoriteStopsAdapter(favoriteStops)
-            favoriteStopsList.swapAdapter(newAdapter, true)
+            (favoriteStopsList.adapter as FavoriteStopsAdapter).edit()
+                    .replaceAll(favoriteStops).commit()
         })
+    }
+
+    override fun onRemoveFavoriteStopClick(id: String) {
+        viewModel.removeStopFromFavorites(id)
     }
 }

@@ -9,22 +9,54 @@
             name="line"
             type="pl.transity.app.data.model.FavoriteLine" />
 
+        <variable
+            name="listener"
+            type="pl.transity.app.adapter.FavoriteLinesAdapter.RemoveFavoriteLineClickListener" />
+
     </data>
 
-    <TextView
-        android:id="@+id/line_number"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        android:text="@{line.line}"
-        tools:text="@string/arrival_line"
-        tools:layout_width="64dp"/>
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/line_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="@{line.line}"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+
+            app:layout_constraintEnd_toStartOf="@+id/delete_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/iw_line" />
+
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="delete_icon"
+            android:onClick="@{() -> listener.onRemoveFavoriteLineClick(line.line)}"
+            android:src="@drawable/ic_close_gray_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

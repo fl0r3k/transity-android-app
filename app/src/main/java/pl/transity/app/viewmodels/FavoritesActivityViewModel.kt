@@ -11,4 +11,12 @@ class FavoritesActivityViewModel(
 
     val favoriteStops = stopRepository.favoriteStops
     val favoriteLines = vehicleRepository.favoriteLines
+
+    fun removeStopFromFavorites(id : String) {
+        stopRepository.removeStopFromFavorites(id)
+    }
+
+    fun removeLineFromFavorites(line : String) {
+        vehicleRepository.removeLineFromFavorites(line)
+    }
 }

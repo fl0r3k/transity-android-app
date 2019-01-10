@@ -481,7 +481,7 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    fun startSettingsActivity(v: View) {
+    fun startSettingsActivity() {
         val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
         viewModel.clearSelection()
@@ -514,7 +514,7 @@ class MainActivity : AppCompatActivity(),
                 }
     }
 
-    fun myLocationButtonPressed(@SuppressWarnings("unused") v: View) {
+    fun myLocationButtonPressed() {
         if (Permissions.isLocationPermissionGranted(this)) {
             goToMyLocation()
         } else {
@@ -523,7 +523,7 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-    fun centerMapOnCity(@SuppressWarnings("unused") v: View) {
+    fun centerMapOnCity() {
         val center = LatLng(52.2297700, 21.0117800)
         val zoom = 11f
         val cameraUpdate = CameraUpdateFactory.newCameraPosition(CameraPosition.Builder()

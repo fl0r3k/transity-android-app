@@ -1,33 +1,41 @@
 package pl.transity.app.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import com.github.wrdlbrnft.sortedlistadapter.SortedListAdapter
 import pl.transity.app.data.model.FavoriteLine
 import pl.transity.app.databinding.FavoriteLineListItemBinding
 
 
-class FavoriteLinesAdapter(private val favoriteLines: List<FavoriteLine>) : RecyclerView.Adapter<FavoriteLinesAdapter.FavoriteLineViewHolder>() {
+class FavoriteLinesAdapter(
+        context: Context,
+        comparator: Comparator<FavoriteLine>,
+        private val removeFavoriteLineClickListener: FavoriteLinesAdapter.RemoveFavoriteLineClickListener
+) : SortedListAdapter<FavoriteLine>(context, FavoriteLine::class.java, comparator) {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FavoriteLineViewHolder {
-        val context = viewGroup.context
-        val inflater = LayoutInflater.from(context)
-        val binding = FavoriteLineListItemBinding.inflate(inflater, viewGroup, false)
-        return FavoriteLineViewHolder(binding)
+    interface RemoveFavoriteLineClickListener {
+        fun onRemoveFavoriteLineClick(line: String)
     }
 
-    override fun onBindViewHolder(holder: FavoriteLineViewHolder, position: Int) {
-        val favoriteLine = favoriteLines[position]
-        holder.bind(favoriteLine)
+    override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewHolder<out FavoriteLine> {
+        val binding = FavoriteLineListItemBinding.inflate(inflater, parent, false)
+        return FavoriteLineViewHolder(binding, removeFavoriteLineClickListener)
     }
 
-    override fun getItemCount() = favoriteLines.size
 
+    inner class FavoriteLineViewHolder(
+            private val binding: FavoriteLineListItemBinding,
+            removeFavoriteLineClickListener: FavoriteLinesAdapter.RemoveFavoriteLineClickListener
+    ) : SortedListAdapter.ViewHolder<FavoriteLine>(binding.root) {
 
-    inner class FavoriteLineViewHolder(private val binding: FavoriteLineListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.listener = removeFavoriteLineClickListener
+        }
 
-        fun bind(favoriteLine: FavoriteLine) {
+        override fun performBind(favoriteLine: FavoriteLine) {
             binding.line = favoriteLine
         }
+
     }
 }
