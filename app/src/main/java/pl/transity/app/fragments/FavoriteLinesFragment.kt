@@ -1,6 +1,7 @@
 package pl.transity.app.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,8 @@ class FavoriteLinesFragment : Fragment(), FavoriteLinesAdapter.RemoveFavoriteLin
         }
 
         viewModel.favoriteLines.observe(this, Observer { favoriteLines ->
+            Log.d("FavoriteLinesFragment","favoriteLines.observer")
+            Log.d("FavoriteLinesFragment","$favoriteLines")
             (favoriteLinesList.adapter as FavoriteLinesAdapter).edit()
                     .replaceAll(favoriteLines).commit()
         })

@@ -14,9 +14,9 @@ data class Stop(
         @Expose var name: String,
         @Expose val lat: Double,
         @Expose val lon: Double
-) : SortedListAdapter.ViewModel{
+) : SortedListAdapter.ViewModel {
     @Ignore
-    val position: LatLng = LatLng(lat,lon)
+    val position: LatLng = LatLng(lat, lon)
 
     companion object {
         const val TRAM = 0

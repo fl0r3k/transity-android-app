@@ -23,7 +23,6 @@ class FavoriteLinesAdapter(
         return FavoriteLineViewHolder(binding, removeFavoriteLineClickListener)
     }
 
-
     inner class FavoriteLineViewHolder(
             private val binding: FavoriteLineListItemBinding,
             removeFavoriteLineClickListener: FavoriteLinesAdapter.RemoveFavoriteLineClickListener

@@ -50,8 +50,8 @@ class FavoriteStopsFragment : Fragment(), FavoriteStopsAdapter.RemoveFavoriteSto
         }
 
         viewModel.favoriteStops.observe(this, Observer { favoriteStops ->
-            Log.d("FavoriteStopsFragment","favoriteStops.observer")
-            Log.d("FavoriteStopsFragment","$favoriteStops")
+            Log.d("FavoriteStopsFragment", "favoriteStops.observer")
+            Log.d("FavoriteStopsFragment", "$favoriteStops")
             (favoriteStopsList.adapter as FavoriteStopsAdapter).edit()
                     .replaceAll(favoriteStops).commit()
         })

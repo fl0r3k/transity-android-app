@@ -21,7 +21,6 @@ interface FavoriteLineDao {
     @Query("SELECT * FROM favourite_lines")
     fun getFavoriteLinesLiveData() : LiveData<List<FavoriteLine>>
 
-
     @Insert(onConflict = REPLACE)
     fun addLine(line : FavoriteLine)
 

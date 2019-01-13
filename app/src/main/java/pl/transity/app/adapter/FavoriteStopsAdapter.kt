@@ -11,7 +11,7 @@ import pl.transity.app.databinding.FavoriteStopListItemBinding
 class FavoriteStopsAdapter(
         context: Context,
         comparator: Comparator<Stop>,
-        private val removeFavoriteStopClickListener : FavoriteStopsAdapter.RemoveFavoriteStopClickListener
+        private val removeFavoriteStopClickListener: FavoriteStopsAdapter.RemoveFavoriteStopClickListener
 ) : SortedListAdapter<Stop>(context, Stop::class.java, comparator) {
 
     interface RemoveFavoriteStopClickListener {
@@ -20,12 +20,12 @@ class FavoriteStopsAdapter(
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup, viewType: Int): ViewHolder<out Stop> {
         val binding = FavoriteStopListItemBinding.inflate(inflater, parent, false)
-        return FavoriteStopViewHolder(binding,removeFavoriteStopClickListener)
+        return FavoriteStopViewHolder(binding, removeFavoriteStopClickListener)
     }
 
     inner class FavoriteStopViewHolder(
             private val binding: FavoriteStopListItemBinding,
-            removeFavoriteStopClickListener : FavoriteStopsAdapter.RemoveFavoriteStopClickListener
+            removeFavoriteStopClickListener: FavoriteStopsAdapter.RemoveFavoriteStopClickListener
     ) : SortedListAdapter.ViewHolder<Stop>(binding.root) {
 
         init {

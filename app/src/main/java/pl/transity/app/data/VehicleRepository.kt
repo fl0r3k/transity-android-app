@@ -23,9 +23,9 @@ class VehicleRepository(
     val favoriteLinesFlowable = favoriteLineDao.getFavoriteLines()
     val favoriteLines = favoriteLineDao.getFavoriteLinesLiveData()
 
-    val vehicle : LiveData<Vehicle> = Transformations.map(vehicleNetworkDataSource.getFetchedSelectedVehicle()) {
-        for (stop in it.stops){
-            stop.distance = SphericalUtil.computeDistanceBetween(it.position,stop.position)
+    val vehicle: LiveData<Vehicle> = Transformations.map(vehicleNetworkDataSource.getFetchedSelectedVehicle()) {
+        for (stop in it.stops) {
+            stop.distance = SphericalUtil.computeDistanceBetween(it.position, stop.position)
         }
         stopsArrivals.postValue(it.stops)
         it
@@ -61,12 +61,12 @@ class VehicleRepository(
     }
 
     fun addLineToFavorites(line: String) {
-        Log.d(TAG,"Adding line $line to favorites")
+        Log.d(TAG, "Adding line $line to favorites")
         executors.diskIO.execute { favoriteLineDao.addLine(FavoriteLine(line)) }
     }
 
     fun removeLineFromFavorites(line: String) {
-        Log.d(TAG,"Removing line $line from favorites")
+        Log.d(TAG, "Removing line $line from favorites")
         executors.diskIO.execute { favoriteLineDao.removeLine(line) }
     }
 
@@ -74,7 +74,7 @@ class VehicleRepository(
         vehicleNetworkDataSource.onlyFavorite = onlyFavorite
     }
 
-    fun fetchSelectedVehicleDetails(id : String) {
+    fun fetchSelectedVehicleDetails(id: String) {
         vehicleNetworkDataSource.fetchSelectedVehicleDetails(id)
     }
 }

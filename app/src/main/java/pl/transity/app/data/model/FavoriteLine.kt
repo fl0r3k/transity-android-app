@@ -11,7 +11,7 @@ data class FavoriteLine(
 ) : SortedListAdapter.ViewModel {
 
     override fun <T : Any?> isContentTheSameAs(item: T): Boolean {
-        if (item is Stop) {
+        if (item is FavoriteLine) {
             val fLine = item as FavoriteLine
             return fLine.line == line
         }
@@ -19,7 +19,7 @@ data class FavoriteLine(
     }
 
     override fun <T : Any?> isSameModelAs(item: T): Boolean {
-        if (item is Stop) {
+        if (item is FavoriteLine) {
             val fLine = item as FavoriteLine
             return fLine.line == line
         }
