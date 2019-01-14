@@ -96,51 +96,45 @@
                 app:fabSize="mini"
                 app:rippleColor="@color/colorGrey" />
 
-            <androidx.core.widget.NestedScrollView
+
+            <LinearLayout
                 android:id="@+id/bottomSheet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/white"
                 android:elevation="4dp"
+                android:orientation="vertical"
                 app:behavior_hideable="true"
                 app:behavior_state="@{viewModel.bottomSheetBehaviorState}"
                 app:layout_behavior="@string/bottom_sheet_behavior">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bottomSheetLinesList"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:elevation="4dp"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.VISIBLE : View.GONE}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bottomSheetNextArrivalsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="@{viewModel.bottomSheetLinesListVisible}"
+                    android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.VISIBLE : View.GONE}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bottomSheetNextStopsList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="@{!viewModel.bottomSheetLinesListVisible}"
+                    android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.GONE : View.VISIBLE}" />
 
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/bottomSheetLinesList"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/white"
-                        android:elevation="4dp"
-                        android:nestedScrollingEnabled="false"
-                        android:paddingTop="14dp"
-                        android:paddingBottom="14dp"
-                        android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.VISIBLE : View.GONE}" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/bottomSheetNextArrivalsList"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="@{viewModel.bottomSheetLinesListVisible}"
-                        android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.VISIBLE : View.GONE}" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/bottomSheetNextStopsList"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="@{!viewModel.bottomSheetLinesListVisible}"
-                        android:visibility="@{viewModel.bottomSheetLinesListVisible ? View.GONE : View.VISIBLE}" />
-
-                </LinearLayout>
-
-            </androidx.core.widget.NestedScrollView>
-
+            </LinearLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <com.google.android.gms.ads.AdView
