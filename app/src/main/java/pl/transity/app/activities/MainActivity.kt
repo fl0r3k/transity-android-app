@@ -41,10 +41,7 @@ import pl.transity.app.data.model.*
 import pl.transity.app.databinding.ActivityMainBinding
 import pl.transity.app.map.*
 import pl.transity.app.ui.OnLocationPermissionGrantedListener
-import pl.transity.app.utilities.DisplayUtils
-import pl.transity.app.utilities.Injection
-import pl.transity.app.utilities.PaddingUtils
-import pl.transity.app.utilities.Permissions
+import pl.transity.app.utilities.*
 import pl.transity.app.viewmodels.MainActivityViewModel
 
 private const val TAG = "MainActivity"
@@ -92,6 +89,8 @@ class MainActivity : AppCompatActivity(),
     private val compositeOnMarkerClickListener = CompositeOnMarkerClickListener()
 
 
+    private lateinit var currentCity : CityLocation
+
     private val DEFAULT_LOCATION = LatLng(52.2297700, 21.0117800)
     private val DEFAULT_ZOOM = 16f
     private val DEFAULT_CAMERA_POSITION = CameraPosition.Builder()
@@ -129,6 +128,8 @@ class MainActivity : AppCompatActivity(),
 
         setupMainActivityViewModel()
         dataBinding.viewModel = viewModel
+
+        currentCity = CityLocation(52.2297700,21.0117800,11f)
 
         setupSharedPreferences()
 
@@ -221,6 +222,7 @@ class MainActivity : AppCompatActivity(),
         if (::vehiclesLayer.isInitialized && ::viewModel.isInitialized) {
             if (vehiclesLayer.isLayerOnMap()) viewModel.stopVehicleFetcher()
         }
+        if (::googleMap.isInitialized) saveMapState()
         Log.d(TAG, "onPause() - END")
     }
 
@@ -239,6 +241,26 @@ class MainActivity : AppCompatActivity(),
         Log.d(TAG, "onDestroy() - END")
     }
 
+    private fun saveMapState() {
+        val ed = PreferenceManager.getDefaultSharedPreferences(this).edit()
+        ed.apply {
+            putFloat("MAP_ZOOM", googleMap.cameraPosition.zoom)
+            putLong("MAP_LATITUDE", googleMap.cameraPosition.target.latitude.toBits())
+            putLong("MAP_LONGITUDE", googleMap.cameraPosition.target.longitude.toBits())
+        }
+        ed.apply()
+    }
+
+    private fun restoreMapState() {
+        val sp = PreferenceManager.getDefaultSharedPreferences(this)
+        val zoom = sp.getFloat("MAP_ZOOM", currentCity.zoom)
+        val lat = Double.fromBits(sp.getLong("MAP_LATITUDE", currentCity.latitude.toBits()))
+        val lon = Double.fromBits(sp.getLong("MAP_LONGITUDE", currentCity.longitude.toBits()))
+
+        val location = CameraUpdateFactory.newLatLngZoom(LatLng(lat, lon), zoom)
+        googleMap.moveCamera(location)
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         Log.d(TAG, "onMapReady() -  START")
 
@@ -246,12 +268,13 @@ class MainActivity : AppCompatActivity(),
 
         this.googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.map_style_standard))
 
+        restoreMapState()
+
         // Check for location permission
         if (Permissions.isLocationPermissionGranted(this)) {
             setupLocation()
         } else {
             Permissions.askLocationPermission(this)
-            this.googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(DEFAULT_CAMERA_POSITION))
         }
 
         addLayers()
@@ -283,7 +306,7 @@ class MainActivity : AppCompatActivity(),
         val showVehicles = sharedPreferences.getBoolean(getString(R.string.pref_show_vehicles_key), resources.getBoolean(R.bool.pref_show_vehicles_default))
         if (showVehicles) {
             val onlyFavoriteVehicles = sharedPreferences.getBoolean(getString(R.string.pref_show_only_favorite_vehicles_key), resources.getBoolean(R.bool.pref_show_only_favorite_vehicles_default))
-            Log.d(TAG,"$onlyFavoriteVehicles")
+            Log.d(TAG, "$onlyFavoriteVehicles")
             viewModel.setOnlyFavoriteVehicles(onlyFavoriteVehicles)
             addVehiclesLayer()
         }
@@ -524,11 +547,7 @@ class MainActivity : AppCompatActivity(),
 
 
     fun centerMapOnCity() {
-        val center = LatLng(52.2297700, 21.0117800)
-        val zoom = 11f
-        val cameraUpdate = CameraUpdateFactory.newCameraPosition(CameraPosition.Builder()
-                .target(center).zoom(zoom).build())
-        googleMap.animateCamera(cameraUpdate)
+        googleMap.animateCamera(currentCity.toCameraUpdate())
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
@@ -561,7 +580,7 @@ class MainActivity : AppCompatActivity(),
             }
             getString(R.string.pref_show_only_favorite_vehicles_key) -> {
                 val onlyFavorites = sharedPreferences.getBoolean(getString(R.string.pref_show_only_favorite_vehicles_key), resources.getBoolean(R.bool.pref_show_only_favorite_vehicles_default))
-                Log.d(TAG,"$onlyFavorites")
+                Log.d(TAG, "$onlyFavorites")
                 viewModel.setOnlyFavoriteVehicles(onlyFavorites)
             }
             getString(R.string.pref_show_stops_key) -> {
@@ -631,7 +650,7 @@ class MainActivity : AppCompatActivity(),
         linesListLayoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         bottomSheetLinesList.apply {
             layoutManager = linesListLayoutManager
-            addItemDecoration(StopLinesItemDecorator(context as Activity,16, 2, 32))
+            addItemDecoration(StopLinesItemDecorator(context as Activity, 16, 2, 32))
             adapter = LinesIconsAdapter(context, alphabeticalComparator)
             setHasFixedSize(false)
         }
