@@ -97,7 +97,7 @@ class VehicleNetworkDataSource(
                 }
 
                 override fun onFailure(call: Call<List<Vehicle>>, t: Throwable) {
-                    Log.e(TAG, t.message)
+                    if (t.message != null) Log.e(TAG, t.message)
                     t.printStackTrace()
                 }
             })
@@ -132,7 +132,7 @@ class VehicleNetworkDataSource(
             }
 
             override fun onFailure(call: Call<Vehicle>, t: Throwable) {
-                Log.e(TAG, t.message)
+                if (t.message != null) Log.e(TAG, t.message)
                 t.printStackTrace()
             }
         })

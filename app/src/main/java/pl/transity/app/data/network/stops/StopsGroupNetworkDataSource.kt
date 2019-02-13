@@ -22,8 +22,7 @@ class StopsGroupNetworkDataSource(
         private var INSTANCE: StopsGroupNetworkDataSource? = null
 
         fun getInstance(context: Context, stopsGroupApi: StopsGroupAPI, executors: AppExecutors): StopsGroupNetworkDataSource =
-                INSTANCE
-                        ?: synchronized(this) {
+                INSTANCE ?: synchronized(this) {
                     Log.d(TAG, "Creating or Returning Instance")
                     INSTANCE
                             ?: StopsGroupNetworkDataSource(context, stopsGroupApi, executors).also { INSTANCE = it }
@@ -37,7 +36,7 @@ class StopsGroupNetworkDataSource(
     }
 
     fun startFetchStopsGroupsService(validFromLong: Long?) {
-        executors.networkIO.execute{ fetchStopsGroups(validFromLong) }
+        executors.networkIO.execute { fetchStopsGroups(validFromLong) }
     }
 
     private fun fetchStopsGroups(validFromLong: Long?) {
@@ -58,7 +57,7 @@ class StopsGroupNetworkDataSource(
             }
 
             override fun onFailure(call: Call<List<StopsGroup>>, t: Throwable) {
-                Log.e(TAG, t.message)
+                if (t.message != null) Log.e(TAG, t.message)
                 t.printStackTrace()
             }
         })
