@@ -620,7 +620,8 @@ class MainActivity : AppCompatActivity(),
     private fun fillToToolBar(view: View) {
         val toolbarHeight = toolbar.layoutParams.height
         val adViewHeight = AdSize.SMART_BANNER.getHeightInPixels(this)
-        view.layoutParams.height = DisplayUtils.getHeightInPixels(this) - toolbarHeight - adViewHeight
+        val bottomSheetDecoratorHeight = bottomSheetDecorator.layoutParams.height
+        view.layoutParams.height = DisplayUtils.getHeightInPixels(this) - toolbarHeight - adViewHeight + bottomSheetDecoratorHeight
     }
 
     private fun setupToolbar() {
