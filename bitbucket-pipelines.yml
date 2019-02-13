@@ -1,0 +1,16 @@
+image: mingc/android-build-box:latest
+
+pipelines:
+  default:
+    - step:
+        deployment: production
+        caches:
+          - gradle
+          - gradlewrapper
+          - androidavd
+        script:
+          - bash ./gradlew assemble
+definitions:
+  caches:
+    gradlewrapper: ~/.gradle/wrapper
+    androidavd: $ANDROID_HOME/.android/avd
