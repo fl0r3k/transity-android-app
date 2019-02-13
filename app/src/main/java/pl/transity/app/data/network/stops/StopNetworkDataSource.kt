@@ -125,7 +125,7 @@ class StopNetworkDataSource(
             }
 
             override fun onFailure(call: Call<List<Arrival>>, t: Throwable) {
-                Log.e(TAG, t.message)
+                if (t.message != null) Log.e(TAG, t.message)
                 t.printStackTrace()
             }
         })
